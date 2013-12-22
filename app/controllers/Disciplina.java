@@ -1,18 +1,16 @@
 package controllers;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Disciplina {
 
 	private String nome;
 	private int creditos;
-	private List<Disciplina> preRequisitos;
+	private Disciplina[] preRequisitos;
 	private boolean status;
 	private int dificuldade;
 
 	public Disciplina(String nome, int creditos,
-			List<Disciplina> preRequisitos, boolean status, int dificuldade) {
+			Disciplina[] preRequisitos, boolean status, int dificuldade) {
 		this.setCreditos(creditos);
 		this.setNome(nome);
 		this.setPreRequisitos(preRequisitos);
@@ -20,13 +18,13 @@ public class Disciplina {
 		this.setDificuldade(dificuldade);
 	}
 
-	public List<Disciplina> getPreRequisitos() {
+	public Disciplina[] getPreRequisitos() {
 		return preRequisitos;
 	}
 
-	public void setPreRequisitos(List<Disciplina> preRequisitos) {
+	public void setPreRequisitos(Disciplina[] preRequisitos) {
 		if (preRequisitos == null) {
-			this.preRequisitos = new ArrayList<Disciplina>();
+			this.preRequisitos = new Disciplina[0];
 		} else {
 			this.preRequisitos = preRequisitos;
 		}

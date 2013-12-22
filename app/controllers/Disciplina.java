@@ -1,6 +1,5 @@
 package controllers;
 
-
 public class Disciplina {
 
 	private String nome;
@@ -9,12 +8,12 @@ public class Disciplina {
 	private boolean status;
 	private int dificuldade;
 
-	public Disciplina(String nome, int creditos,
-			Disciplina[] preRequisitos, boolean status, int dificuldade) {
+	public Disciplina(String nome, int creditos, Disciplina[] preRequisitos,
+			int dificuldade) {
 		this.setCreditos(creditos);
 		this.setNome(nome);
 		this.setPreRequisitos(preRequisitos);
-		this.setStatus(status);
+		this.status = false;
 		this.setDificuldade(dificuldade);
 	}
 
@@ -30,12 +29,12 @@ public class Disciplina {
 		}
 	}
 
-	public boolean getStatus() {
+	public boolean isConcluida() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
-		this.status = status;
+	public void concluirDisciplina() {
+		this.status = true;
 	}
 
 	public String getNome() {

@@ -48,14 +48,17 @@ public class PlanoDeCurso {
 		
 		
 		// 2º Periodo
-		Disciplina[] pre1 = {prog1, labProg1, ic};
+		Disciplina[] preProg2 = {prog1, labProg1, ic};
+		Disciplina[] preCalc2 = {calc1};
+		Disciplina[] preFFC = {calc1, vetorial};
 		
-		Disciplina prog2 = new Disciplina("Programacao 2", 4, pre1,  3);
-		Disciplina labProg2 = new Disciplina("Laboratório de Programacao 2", 4, pre1,  3);
-		Disciplina calc2 = new Disciplina("Calculo Diferencial e Integral 2", 4, null,  5);
+		
+		Disciplina prog2 = new Disciplina("Programacao 2", 4, preProg2,  3);
+		Disciplina labProg2 = new Disciplina("Laboratório de Programacao 2", 4, preProg2,  3);
+		Disciplina calc2 = new Disciplina("Calculo Diferencial e Integral 2", 4, preCalc2,  5);
 		Disciplina matDisc = new Disciplina("Matemática Discreta", 4, null,  4);
-		Disciplina ffc = new Disciplina("Fundamentos de Física Clássica", 4, null,  2);
-		Disciplina grafos = new Disciplina("Teoria dos Grafos", 4, pre1,  3);
+		Disciplina ffc = new Disciplina("Fundamentos de Física Clássica", 4, preFFC,  2);
+		Disciplina grafos = new Disciplina("Teoria dos Grafos", 4, preProg2,  3);
 		Disciplina metCient = new Disciplina("Metodologia Científica", 4, null,  3);
 		
 		Periodo periodo2 = new Periodo();
@@ -69,8 +72,6 @@ public class PlanoDeCurso {
 		periodo2.addDisciplina(metCient);
 		
 		fluxo.add(periodo2);
-		
-		
 		
 		return fluxogramaPadrao;
 		

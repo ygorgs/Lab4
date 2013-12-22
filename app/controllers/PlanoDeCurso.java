@@ -57,7 +57,7 @@ public class PlanoDeCurso {
 		Disciplina labProg2 = new Disciplina("Laboratório de Programacao 2", 4, preProg2,  3);
 		Disciplina calc2 = new Disciplina("Calculo Diferencial e Integral 2", 4, preCalc2,  5);
 		Disciplina matDisc = new Disciplina("Matemática Discreta", 4, null,  4);
-		Disciplina ffc = new Disciplina("Fundamentos de Física Clássica", 4, preFFC,  2);
+		Disciplina ffc = new Disciplina("Fundamentos de Física Clássica", 4, preFFC,  5);
 		Disciplina grafos = new Disciplina("Teoria dos Grafos", 4, preProg2,  3);
 		Disciplina metCient = new Disciplina("Metodologia Científica", 4, null,  3);
 		
@@ -72,6 +72,34 @@ public class PlanoDeCurso {
 		periodo2.addDisciplina(metCient);
 		
 		fluxo.add(periodo2);
+		
+		// 3º Periodo
+		Disciplina[] preEDA = {prog2, labProg2, grafos};
+		Disciplina[] preProb = {calc1};
+		Disciplina[] preFFM = {calc2, vetorial};
+		Disciplina[] preLinear = {vetorial};
+		Disciplina[] preTC = {grafos, ic, matDisc};
+		
+		
+		Disciplina EDA = new Disciplina("Estrutura de Dados e Algoritmos", 4, preEDA,  3);
+		Disciplina LEDA = new Disciplina("Laboratório de Estrutura de Dados e Algoritmos", 4, preEDA,  3);
+		Disciplina linear = new Disciplina("Algebra Linear 1", 4, preLinear,  5);
+		Disciplina prob = new Disciplina("Probabilidade e Estatística", 4, preProb,  4);
+		Disciplina tc = new Disciplina("Teoria da Computação", 4, preTC,  2);
+		Disciplina gi = new Disciplina("Gerência da Informação", 4, null,  3);
+		Disciplina FFM = new Disciplina("Fundamentos de Física Moderna", 4, preFFM,  3);
+		
+		Periodo periodo3 = new Periodo();
+		
+		periodo3.addDisciplina(EDA);
+		periodo3.addDisciplina(LEDA);
+		periodo3.addDisciplina(linear);
+		periodo3.addDisciplina(prob);
+		periodo3.addDisciplina(tc);
+		periodo3.addDisciplina(gi);
+		periodo3.addDisciplina(FFM);
+		
+		fluxo.add(periodo3);
 		
 		return fluxogramaPadrao;
 		

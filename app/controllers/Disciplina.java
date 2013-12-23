@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.Arrays;
+
 public class Disciplina {
 
 	private String nome;
@@ -7,7 +9,8 @@ public class Disciplina {
 	private Disciplina[] preRequisitos;
 	private boolean status;
 	private int dificuldade;
-
+	
+	//Information Expert -> Cada disciplina tem um nome, numero de creditos, lista de pre-requisitos e uma dificuldade
 	public Disciplina(String nome, int creditos, Disciplina[] preRequisitos,
 			int dificuldade) {
 		this.setCreditos(creditos);
@@ -53,12 +56,6 @@ public class Disciplina {
 		this.creditos = creditos;
 	}
 
-	public boolean equals(Disciplina disc) {
-		return (this.getCreditos() == disc.getCreditos()
-				&& this.preRequisitos.equals(disc.getPreRequisitos()) && this
-				.getNome().equals(this.getNome())) ? true : false;
-	}
-
 	public int getDificuldade() {
 		return dificuldade;
 	}
@@ -71,5 +68,29 @@ public class Disciplina {
 		} else {
 			this.dificuldade = dificuldade;
 		}
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Disciplina other = (Disciplina) obj;
+		if (creditos != other.creditos)
+			return false;
+		if (dificuldade != other.dificuldade)
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (!Arrays.equals(preRequisitos, other.preRequisitos))
+			return false;
+		return true;
 	}
 }

@@ -5,215 +5,212 @@ import java.util.List;
 
 public class PlanoDeCurso {
 
+	private ListaDeDisciplinas listaDeDisciplinas;
 	private List<Periodo> meuPlanoDeCurso;
 	private List<Periodo> fluxogramaPadrao;
 
+	// Creator -> Um plano de Curso é formado por n Periodos
 	public PlanoDeCurso() {
+		listaDeDisciplinas = new ListaDeDisciplinas();
 		meuPlanoDeCurso = new ArrayList<Periodo>();
-		this.fluxogramaPadrao = geraFluxogramaPadrao();
+		geraFluxogramaPadrao();
 	}
 
 	public List<Periodo> getPlanoDeCurso() {
 		return meuPlanoDeCurso;
 	}
 
-	public void addPeriodo(Periodo periodo) {
-		meuPlanoDeCurso.add(periodo);
+	public boolean addDisciplina(Disciplina disciplina, int periodo) {
+		while (meuPlanoDeCurso.size() < periodo) {
+			meuPlanoDeCurso.add(new Periodo());
+		}
+		if (checarPreRequisitos(disciplina, periodo)) {
+			return meuPlanoDeCurso.get(periodo - 1).addDisciplina(disciplina);
+		}
+		return false;
+	}
+	
+	public boolean removerDisciplina(Disciplina disciplina){
+		for (int i = 1; i < meuPlanoDeCurso.size(); i++) {
+			if(meuPlanoDeCurso.get(i).contem(disciplina))
+				return meuPlanoDeCurso.get(i).removeDisciplina(disciplina);
+		}
+		return false;
 	}
 
-	public List<Periodo> getFluxogramaPadrao() {
-		return fluxogramaPadrao;
+	public Periodo getPeriodo(int periodo) {
+		return meuPlanoDeCurso.get(periodo - 1);
+
 	}
 
-	private List<Periodo> geraFluxogramaPadrao() {
-		List<Periodo> fluxo = new ArrayList<Periodo>();
-		
+	public Periodo getPeriodoPadrao(int periodo) {
+		return fluxogramaPadrao.get(periodo - 1);
+	}
+
+	private boolean checarPreRequisitos(Disciplina disciplina, int periodo) {
+		for (Disciplina preRequisito : disciplina.getPreRequisitos()) {
+			boolean contem = false;
+			for (int i = periodo - 1; i >= 0; i--) {
+				if (meuPlanoDeCurso.get(i).getDisciplinas()
+						.contains(preRequisito)) {
+					contem = true;
+					break;
+				}
+			}if(!contem)
+				return false;
+		}
+		return true;
+	}
+
+	private void geraFluxogramaPadrao() {
+		this.fluxogramaPadrao = new ArrayList<Periodo>();
+
 		// 1º Periodo
-		Disciplina prog1 = new Disciplina("Programacao 1", 4, null,  3);
-		Disciplina labProg1 = new Disciplina("Laboratório de Programacao 1", 4, null,  3);
-		Disciplina calc1 = new Disciplina("Calculo Diferencial e Integral 1", 4, null,  5);
-		Disciplina vetorial = new Disciplina("Algebra Vetorial e Geometria Analítica 1", 4, null,  4);
-		Disciplina lpt = new Disciplina("Leitura e Produção de Texto", 4, null,  2);
-		Disciplina ic = new Disciplina("Introdução a Computação", 4, null,  3);
-		
 		Periodo periodo1 = new Periodo();
-		
-		periodo1.addDisciplina(prog1);
-		periodo1.addDisciplina(labProg1);
-		periodo1.addDisciplina(calc1);
-		periodo1.addDisciplina(vetorial);
-		periodo1.addDisciplina(lpt);
-		periodo1.addDisciplina(ic);
-		fluxo.add(periodo1);
-		
-		
+
+		periodo1.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Programacao 1"));
+		periodo1.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Laboratório de Programacao 1"));
+		periodo1.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Calculo Diferencial e Integral 1"));
+		periodo1.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Algebra Vetorial e Geometria Analítica 1"));
+		periodo1.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Leitura e Produção de Texto"));
+		periodo1.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Introdução a Computação"));
+
+		fluxogramaPadrao.add(periodo1);
+		meuPlanoDeCurso.add(periodo1);
+
 		// 2º Periodo
-		Disciplina[] preProg2 = {prog1, labProg1, ic};
-		Disciplina[] preCalc2 = {calc1};
-		Disciplina[] preFFC = {calc1, vetorial};
-		
-		
-		Disciplina prog2 = new Disciplina("Programacao 2", 4, preProg2,  3);
-		Disciplina labProg2 = new Disciplina("Laboratório de Programacao 2", 4, preProg2,  3);
-		Disciplina calc2 = new Disciplina("Calculo Diferencial e Integral 2", 4, preCalc2,  5);
-		Disciplina matDisc = new Disciplina("Matemática Discreta", 4, null,  4);
-		Disciplina ffc = new Disciplina("Fundamentos de Física Clássica", 4, preFFC,  5);
-		Disciplina grafos = new Disciplina("Teoria dos Grafos", 2, preProg2,  2);
-		Disciplina metCient = new Disciplina("Metodologia Científica", 4, null,  3);
-		
 		Periodo periodo2 = new Periodo();
-		
-		periodo2.addDisciplina(prog2);
-		periodo2.addDisciplina(labProg2);
-		periodo2.addDisciplina(calc2);
-		periodo2.addDisciplina(matDisc);
-		periodo2.addDisciplina(ffc);
-		periodo2.addDisciplina(grafos);
-		periodo2.addDisciplina(metCient);
-		
-		fluxo.add(periodo2);
-		
+
+		periodo2.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Programacao 2"));
+		periodo2.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Laboratório de Programacao 2"));
+		periodo2.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Calculo Diferencial e Integral 2"));
+		periodo2.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Matemática Discreta"));
+		periodo2.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Fundamentos de Física Clássica"));
+		periodo2.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Teoria dos Grafos"));
+		periodo2.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Metodologia Científica"));
+
+		fluxogramaPadrao.add(periodo2);
+
 		// 3º Periodo
-		Disciplina[] preEDA = {prog2, labProg2, grafos};
-		Disciplina[] preProb = {calc1};
-		Disciplina[] preFFM = {calc2, ffc};
-		Disciplina[] preLinear = {vetorial};
-		Disciplina[] preTC = {grafos, ic, matDisc};
-		
-		
-		Disciplina EDA = new Disciplina("Estrutura de Dados e Algoritmos", 4, preEDA,  3);
-		Disciplina LEDA = new Disciplina("Laboratório de Estrutura de Dados e Algoritmos", 4, preEDA,  4);
-		Disciplina linear = new Disciplina("Algebra Linear 1", 4, preLinear,  5);
-		Disciplina prob = new Disciplina("Probabilidade e Estatística", 4, preProb,  4);
-		Disciplina tc = new Disciplina("Teoria da Computação", 4, preTC,  4);
-		Disciplina gi = new Disciplina("Gerência da Informação", 4, null,  3);
-		Disciplina FFM = new Disciplina("Fundamentos de Física Moderna", 4, preFFM,  3);
-		
 		Periodo periodo3 = new Periodo();
-		
-		periodo3.addDisciplina(EDA);
-		periodo3.addDisciplina(LEDA);
-		periodo3.addDisciplina(linear);
-		periodo3.addDisciplina(prob);
-		periodo3.addDisciplina(tc);
-		periodo3.addDisciplina(gi);
-		periodo3.addDisciplina(FFM);
-		
-		fluxo.add(periodo3);
-		
+
+		periodo3.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Estrutura de Dados e Algoritmos"));
+		periodo3.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Laboratório de Estrutura de Dados e Algoritmos"));
+		periodo3.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Algebra Linear"));
+		periodo3.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Probabilidade e Estatística"));
+		periodo3.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Teoria da Computação"));
+		periodo3.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Fundamentos de Física Moderna"));
+		periodo3.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Gerência da Informação"));
+
+		fluxogramaPadrao.add(periodo3);
+
 		// 4º Periodo
-		Disciplina[] preOAC = {EDA, LEDA, FFM};
-		Disciplina[] prePLP = {EDA, LEDA, tc};
-		Disciplina[] preLogica = {tc};
-		Disciplina[] preMetodos = {linear, prob};
-		Disciplina[] preSI1 = {gi};
-		Disciplina[] preES1 = {prob, prog2, labProg2};
-		
-		
-		Disciplina OAC = new Disciplina("Organização e Arquitetura de Computadores", 4, preOAC,  4);
-		Disciplina LOAC = new Disciplina("Laboratório de Estrutura de Dados e Algoritmos", 4, preOAC,  4);
-		Disciplina PLP = new Disciplina("Paradigma de Linguagens de Programação", 2, prePLP,  3);
-		Disciplina metodos = new Disciplina("Métodos Estatísticos", 4, preMetodos,  4);
-		Disciplina logica = new Disciplina("Lógica Matemática", 4, preLogica,  3);
-		Disciplina SI1 = new Disciplina("Sistemas de Informação 1", 4, preSI1,  3);
-		Disciplina ES1 = new Disciplina("Engenharia de Software 1", 4, preES1,  4);
-		
 		Periodo periodo4 = new Periodo();
-		
-		periodo4.addDisciplina(OAC);
-		periodo4.addDisciplina(LOAC);
-		periodo4.addDisciplina(PLP);
-		periodo4.addDisciplina(metodos);
-		periodo4.addDisciplina(logica);
-		periodo4.addDisciplina(SI1);
-		periodo4.addDisciplina(ES1);
-		
-		fluxo.add(periodo4);
-		
+
+		periodo4.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Organização e Arquitetura de Computadores"));
+		periodo4.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Laboratório de Estrutura de Dados e Algoritmos"));
+		periodo4.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Paradigma de Linguagens de Programação"));
+		periodo4.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Métodos Estatísticos"));
+		periodo4.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Lógica Matemática"));
+		periodo4.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Sistemas de Informação 1"));
+		periodo4.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Engenharia de Software 1"));
+
+		fluxogramaPadrao.add(periodo4);
+
 		// 5º Periodo
-		Disciplina[] preATAL = {EDA, LEDA, calc2, logica};
-		Disciplina[] preRC = {OAC,LOAC};
-		Disciplina[] preCompiladores = {PLP, OAC, LOAC};
-		Disciplina[] preLES = {ES1};
-		Disciplina[] preSI2BD1 = {SI1};
-		
-		
-		Disciplina ATAL = new Disciplina("Análise e Técnicas de Algoritmos", 4, preATAL,  4);
-		Disciplina infoSoc = new Disciplina("Informática e Sociedade", 2, null,  1);
-		Disciplina RC = new Disciplina("Redes de Computadores", 4, preRC,  3);
-		Disciplina compiladores = new Disciplina("Compiladores", 4, preCompiladores,  5);
-		Disciplina SI2 = new Disciplina("Sistemas de Informação 2", 4, preSI2BD1,  4);
-		Disciplina BD1 = new Disciplina("Banco de Dados 1", 4, preSI2BD1,  3);
-		Disciplina LES = new Disciplina("Laboratório de Engenharia de Software", 2, preLES,  3);
-		
 		Periodo periodo5 = new Periodo();
-		
-		periodo5.addDisciplina(ATAL);
-		periodo5.addDisciplina(infoSoc);
-		periodo5.addDisciplina(RC);
-		periodo5.addDisciplina(compiladores);
-		periodo5.addDisciplina(LES);
-		periodo5.addDisciplina(SI2);
-		periodo5.addDisciplina(BD1);
-		
-		fluxo.add(periodo5);
-		
+
+		periodo5.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Análise e Técnicas de Algoritmos"));
+		periodo5.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Informática e Sociedade"));
+		periodo5.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Redes de Computadores"));
+		periodo5.addDisciplina(listaDeDisciplinas.getDisciplina("Compiladores"));
+		periodo5.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Banco de Dados 1"));
+		periodo5.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Sistemas de Informação 2"));
+		periodo5.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Laboratório de Engenharia de Software"));
+
+		fluxogramaPadrao.add(periodo5);
+
 		// 6º Periodo
-		Disciplina[] preSO = {EDA, LOAC};
-		Disciplina[] preIRC = {RC};
-		Disciplina[] preIA1 = {PLP, metodos, ATAL};
-		Disciplina[] preBD2 = {BD1, SI2};
-		
-		
-		Disciplina SO = new Disciplina("Sistemas Operacionais", 4, preSO,  5);
-		Disciplina IRC = new Disciplina("Interconexão de Redes de Computadores", 2, preIRC,  3);
-		Disciplina LIRC = new Disciplina("Laboratório de Interconexão de Redes de Computadores", 4, preIRC,  3);
-		Disciplina direito = new Disciplina("Direito e Cidadania", 4, null,  1);
-		Disciplina BD2 = new Disciplina("Banco de Dados 2", 4, preBD2,  3);
-		Disciplina IA1 = new Disciplina("Inteligência Artificial 1", 4, preIA1,  4);
-		
 		Periodo periodo6 = new Periodo();
-		
-		periodo6.addDisciplina(SO);
-		periodo6.addDisciplina(IRC);
-		periodo6.addDisciplina(LIRC);
-		periodo6.addDisciplina(direito);
-		periodo6.addDisciplina(BD2);
-		periodo6.addDisciplina(IA1);
-		
-		fluxo.add(periodo6);
-		
+
+		periodo6.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Sistemas Operacionais"));
+		periodo6.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Interconexão de Redes de Computadores"));
+		periodo6.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Laboratório de Interconexão de Redes de Computadores"));
+		periodo6.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Direito e Cidadania"));
+		periodo6.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Banco de Dados 2"));
+		periodo6.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Inteligência Artificial 1"));
+		periodo6.addDisciplina(listaDeDisciplinas.getDisciplina("Opitativa"));
+		periodo6.addDisciplina(listaDeDisciplinas.getDisciplina("Opitativa"));
+
+		fluxogramaPadrao.add(periodo6);
+
 		// 7º Periodo
-		Disciplina[] preMSN = {linear, ATAL};
-		Disciplina[] preADSD = {prob};
-		Disciplina[] preP1 = {metCient, LES};
-		
-		Disciplina MSN = new Disciplina("Métodos de Software Numéricos", 4, preMSN,  1);
-		Disciplina ADSD = new Disciplina("Avaliação de Desempenho de Sistemas Discretos", 4, preADSD,  3);
-		Disciplina P1 = new Disciplina("Projeto em Computação 1", 4, preP1,  4);
-		
 		Periodo periodo7 = new Periodo();
-		
-		periodo7.addDisciplina(MSN);
-		periodo7.addDisciplina(ADSD);
-		periodo7.addDisciplina(P1);
-				
-		fluxo.add(periodo7);
-		
+
+		periodo7.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Métodos de Software Numéricos"));
+		periodo7.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Avaliação de Desempenho de Sistemas Discretos"));
+		periodo7.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Projeto em Computação 1"));
+		periodo7.addDisciplina(listaDeDisciplinas.getDisciplina("Opitativa"));
+		periodo7.addDisciplina(listaDeDisciplinas.getDisciplina("Opitativa"));
+		periodo7.addDisciplina(listaDeDisciplinas.getDisciplina("Opitativa"));
+		periodo7.addDisciplina(listaDeDisciplinas.getDisciplina("Opitativa"));
+
+		fluxogramaPadrao.add(periodo7);
+
 		// 8º Periodo
-		Disciplina[] preP2 = {P1};
-		
-		Disciplina P2 = new Disciplina("Projeto em Computação 2", 4, preP2,  4);
-		
 		Periodo periodo8 = new Periodo();
-		
-		periodo7.addDisciplina(P2);
-				
-		fluxo.add(periodo8);
-		
-		
-		
-		return fluxogramaPadrao;
-		
+
+		periodo8.addDisciplina(listaDeDisciplinas
+				.getDisciplina("Métodos de Software Numéricos"));
+		periodo8.addDisciplina(listaDeDisciplinas.getDisciplina("Opitativa"));
+		periodo8.addDisciplina(listaDeDisciplinas.getDisciplina("Opitativa"));
+		periodo8.addDisciplina(listaDeDisciplinas.getDisciplina("Opitativa"));
+		periodo8.addDisciplina(listaDeDisciplinas.getDisciplina("Opitativa"));
+		periodo8.addDisciplina(listaDeDisciplinas.getDisciplina("Opitativa"));
+
+		fluxogramaPadrao.add(periodo8);
+
 	}
 }

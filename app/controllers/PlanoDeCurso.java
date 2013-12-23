@@ -130,7 +130,7 @@ public class PlanoDeCurso {
 		
 		fluxo.add(periodo4);
 		
-		// 4º Periodo
+		// 5º Periodo
 		Disciplina[] preATAL = {EDA, LEDA, calc2, logica};
 		Disciplina[] preRC = {OAC,LOAC};
 		Disciplina[] preCompiladores = {PLP, OAC, LOAC};
@@ -158,9 +158,62 @@ public class PlanoDeCurso {
 		
 		fluxo.add(periodo5);
 		
+		// 6º Periodo
+		Disciplina[] preSO = {EDA, LOAC};
+		Disciplina[] preIRC = {RC};
+		Disciplina[] preIA1 = {PLP, metodos, ATAL};
+		Disciplina[] preBD2 = {BD1, SI2};
+		
+		
+		Disciplina SO = new Disciplina("Sistemas Operacionais", 4, preSO,  5);
+		Disciplina IRC = new Disciplina("Interconexão de Redes de Computadores", 2, preIRC,  3);
+		Disciplina LIRC = new Disciplina("Laboratório de Interconexão de Redes de Computadores", 4, preIRC,  3);
+		Disciplina direito = new Disciplina("Direito e Cidadania", 4, null,  1);
+		Disciplina BD2 = new Disciplina("Banco de Dados 2", 4, preBD2,  3);
+		Disciplina IA1 = new Disciplina("Inteligência Artificial 1", 4, preIA1,  4);
+		
+		Periodo periodo6 = new Periodo();
+		
+		periodo6.addDisciplina(SO);
+		periodo6.addDisciplina(IRC);
+		periodo6.addDisciplina(LIRC);
+		periodo6.addDisciplina(direito);
+		periodo6.addDisciplina(BD2);
+		periodo6.addDisciplina(IA1);
+		
+		fluxo.add(periodo6);
+		
+		// 7º Periodo
+		Disciplina[] preMSN = {linear, ATAL};
+		Disciplina[] preADSD = {prob};
+		Disciplina[] preP1 = {metCient, LES};
+		
+		Disciplina MSN = new Disciplina("Métodos de Software Numéricos", 4, preMSN,  1);
+		Disciplina ADSD = new Disciplina("Avaliação de Desempenho de Sistemas Discretos", 4, preADSD,  3);
+		Disciplina P1 = new Disciplina("Projeto em Computação 1", 4, preP1,  4);
+		
+		Periodo periodo7 = new Periodo();
+		
+		periodo7.addDisciplina(MSN);
+		periodo7.addDisciplina(ADSD);
+		periodo7.addDisciplina(P1);
+				
+		fluxo.add(periodo7);
+		
+		// 8º Periodo
+		Disciplina[] preP2 = {P1};
+		
+		Disciplina P2 = new Disciplina("Projeto em Computação 2", 4, preP2,  4);
+		
+		Periodo periodo8 = new Periodo();
+		
+		periodo7.addDisciplina(P2);
+				
+		fluxo.add(periodo8);
+		
+		
+		
 		return fluxogramaPadrao;
 		
-		
-		// falta terminar de montar as diciplinas e períodos
 	}
 }

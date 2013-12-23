@@ -14,6 +14,13 @@ public class Periodo {
 		this.setCreditosAtuais(0);
 		this.periodo = new ArrayList<Disciplina>();
 	}
+<<<<<<< HEAD
+=======
+
+	public List<Disciplina> getPeriodo() {
+		return periodo;
+	}
+>>>>>>> bd0a934132d057b4e6a07f45b4d705314b7dffb1
 	
 	//Creator -> Cada periodo é formado por n disciplinas
 	//Diminuição do acoplamento -> Os créditos de cada periodo são calculados dentro da classe periodo

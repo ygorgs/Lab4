@@ -170,6 +170,7 @@ public class ListaDeDisciplinas {
 		
 		disciplinas.put(projeto2.getNome(), projeto2);
 		
+<<<<<<< HEAD
 		//TECC
 		Disciplina[] preJogos = {EDA};
 		Disciplina[] preRedeSemFio = {RC};
@@ -205,6 +206,33 @@ public class ListaDeDisciplinas {
 		
 		disciplinas.put(opitativa1.getNome(), opitativa1);
 
+=======
+		//Opitativas
+		Disciplina opitativa1 = new Disciplina("Opitativa 1", 4, null,  4);
+		Disciplina opitativa2 = new Disciplina("Opitativa 2", 4, null,  4);
+		Disciplina opitativa3 = new Disciplina("Opitativa 3", 4, null,  4);
+		Disciplina opitativa4 = new Disciplina("Opitativa 4", 4, null,  4);
+		Disciplina opitativa5 = new Disciplina("Opitativa 5", 4, null,  4);
+		Disciplina opitativa6 = new Disciplina("Opitativa 6", 4, null,  4);
+		Disciplina opitativa7 = new Disciplina("Opitativa 7", 4, null,  4);
+		Disciplina opitativa8 = new Disciplina("Opitativa 8", 4, null,  4);
+		Disciplina opitativa9 = new Disciplina("Opitativa 9", 4, null,  4);
+		Disciplina opitativa10 = new Disciplina("Opitativa 10", 4, null,  4);
+		Disciplina opitativa11 = new Disciplina("Opitativa 11", 4, null,  4);
+		
+		
+		disciplinas.put(opitativa1.getNome(), opitativa1);
+		disciplinas.put(opitativa2.getNome(), opitativa2);
+		disciplinas.put(opitativa3.getNome(), opitativa3);
+		disciplinas.put(opitativa4.getNome(), opitativa4);
+		disciplinas.put(opitativa5.getNome(), opitativa5);
+		disciplinas.put(opitativa6.getNome(), opitativa6);
+		disciplinas.put(opitativa7.getNome(), opitativa7);
+		disciplinas.put(opitativa8.getNome(), opitativa8);
+		disciplinas.put(opitativa9.getNome(), opitativa9);
+		disciplinas.put(opitativa10.getNome(), opitativa10);
+		disciplinas.put(opitativa11.getNome(), opitativa11);
+>>>>>>> bd0a934132d057b4e6a07f45b4d705314b7dffb1
 		
 		
 	}

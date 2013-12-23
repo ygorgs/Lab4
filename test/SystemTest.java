@@ -11,6 +11,10 @@ import controllers.PlanoDeCurso;
 
 public class SystemTest {
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a7e350305cfaaea0d73fa80a00022671c44ae31c
 	private ListaDeDisciplinas grade;
 	
 	@Before
@@ -21,6 +25,16 @@ public class SystemTest {
 	/*
 	 * visito o sistema e ele me exibe uma lista das disciplinas do 1o período já alocadas
 	 */
+<<<<<<< HEAD
+=======
+=======
+	@Before
+	public void inicializar(){
+		ListaDeDisciplinas grade = new ListaDeDisciplinas();
+	}
+	
+>>>>>>> bd0a934132d057b4e6a07f45b4d705314b7dffb1
+>>>>>>> a7e350305cfaaea0d73fa80a00022671c44ae31c
 	@Test
 	public void deveExibirListaDasDisciplinasDoPrimeiroPeriodo() {
 		PlanoDeCurso meuPlano = new PlanoDeCurso();
@@ -31,6 +45,10 @@ public class SystemTest {
 			assertTrue(primeiroPeriodo.getDisciplinas().contains(disciplina));
 		}
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a7e350305cfaaea0d73fa80a00022671c44ae31c
 	/*Uma disciplina tem pré-requisitos, e ela só pode ser incluída se seus prérequisitos 
 	 * já foram incluídos no 1o período. 
 	 */
@@ -58,4 +76,14 @@ public class SystemTest {
 	}
 	
 	
+<<<<<<< HEAD
+=======
+=======
+	
+	@Test
+	public void deveAdicionarDisciplinasComPreRequisitos(){
+		
+	}
+>>>>>>> bd0a934132d057b4e6a07f45b4d705314b7dffb1
+>>>>>>> a7e350305cfaaea0d73fa80a00022671c44ae31c
 }

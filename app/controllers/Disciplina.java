@@ -19,11 +19,19 @@ public class Disciplina {
 		this.status = false;
 		this.setDificuldade(dificuldade);
 	}
-
+	/**
+	 * 
+	 * @return lista de pre-requisitos da disciplina
+	 */
 	public Disciplina[] getPreRequisitos() {
 		return preRequisitos;
 	}
-
+	
+	/**
+	 * altera a lista de pre-requisitos da disciplina
+	 * 
+	 * @param preRequisitos
+	 */
 	public void setPreRequisitos(Disciplina[] preRequisitos) {
 		if (preRequisitos == null) {
 			this.preRequisitos = new Disciplina[0];
@@ -32,7 +40,12 @@ public class Disciplina {
 		}
 	}
 	
-
+	/**
+	 * verifica se uma disciplina é Co-Requisito
+	 * 
+	 * @param preRequisito
+	 * @return true ou false
+	 */
 	public boolean isCoRequisito(Disciplina preRequisito) {
 		for (Disciplina disciplina : this.preRequisitos) {
 			if(disciplina.equals(preRequisito))
@@ -48,7 +61,7 @@ public class Disciplina {
 	public void concluirDisciplina() {
 		this.status = true;
 	}
-
+	
 	public String getNome() {
 		return nome;
 	}

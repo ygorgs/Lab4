@@ -14,13 +14,15 @@ public class Periodo {
 		this.setCreditosAtuais(0);
 		this.periodo = new ArrayList<Disciplina>();
 	}
+	
 
 	public List<Disciplina> getPeriodo() {
 		return periodo;
 	}
 	
 	//Creator -> Cada periodo é formado por n disciplinas
-	//Diminuição do acoplamento -> Os créditos de cada periodo são calculados dentro da classe periodo
+	//Information experto -> A classe periodo tem as informações necessarias para adicionar uma disciplina
+	//Diminuição do acoplamento, aumento da coesão -> Os créditos de cada periodo são calculados dentro da classe periodo
 	public boolean addDisciplina(Disciplina disc) {
 		if (getCreditosAtuais() + disc.getCreditos() <= MAXCREDITOS) {
 			setCreditosAtuais(getCreditosAtuais() + disc.getCreditos());
@@ -30,6 +32,7 @@ public class Periodo {
 		return false;
 	}
 
+	//Information experto -> A classe periodo tem as informações necessarias para remover uma disciplina
 	public boolean removeDisciplina(Disciplina disc) {
 		if (getCreditosAtuais() >= 0) {
 			setCreditosAtuais(getCreditosAtuais() - disc.getCreditos());

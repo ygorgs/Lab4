@@ -8,11 +8,17 @@ public class ListaDeDisciplinas {
 	
 	Map<String, Disciplina> disciplinas;
 	
+	//Armazena todas as disciplinas oferecidas pelo curso
 	public ListaDeDisciplinas(){
 		this.disciplinas = new HashMap<String, Disciplina>();
 		preencherDisciplinas();
 	}
 	
+	/**
+	 * 
+	 * @param disciplina
+	 * @return uma determinada disciplina
+	 */
 	public Disciplina getDisciplina(String disciplina){
 		return this.disciplinas.get(disciplina);
 	}

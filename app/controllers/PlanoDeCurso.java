@@ -20,7 +20,8 @@ public class PlanoDeCurso {
 	public List<Periodo> getPlanoDeCurso() {
 		return meuPlanoDeCurso;
 	}
-
+	
+	//auemnto da coesão -> testa as condições necessarias para a disciplina ser adicionada num determinado periodo
 	public boolean addDisciplina(Disciplina disciplina, int periodo) {
 		while (meuPlanoDeCurso.size() < periodo) {
 			meuPlanoDeCurso.add(new Periodo());
@@ -31,6 +32,7 @@ public class PlanoDeCurso {
 		return false;
 	}
 	
+	//auemnto da coesão -> testa as condições necessarias para a disciplina ser removida de um determinado periodo
 	public boolean removerDisciplina(Disciplina disciplina){
 		for (int i = 1; i < meuPlanoDeCurso.size(); i++) {
 			if(meuPlanoDeCurso.get(i).contem(disciplina)){
@@ -42,12 +44,13 @@ public class PlanoDeCurso {
 		return false;
 	}
 
-
+	//retorna meu plano de curso
 	public Periodo getPeriodo(int periodo) {
 		return meuPlanoDeCurso.get(periodo - 1);
 
 	}
-
+	
+	//retorna plano de curso padrão
 	public Periodo getPeriodoPadrao(int periodo) {
 		return fluxogramaPadrao.get(periodo - 1);
 	}
